@@ -73,7 +73,8 @@ export default {
 	INVALID_ARGUMENT_TITLE: "Invalid Argument",
 
 	INVALID_PATH_TITLE: "Invalid Command",
-	INVALID_PATH_DESCRIPTION: "I have absolutely no idea how you reached this response.",
+	INVALID_PATH_DESCRIPTION:
+		"I have absolutely no idea how you reached this response.",
 
 	INTERNAL_ERROR_TITLE: "Internal Error Encountered",
 	INTERNAL_ERROR_DESCRIPTION:
@@ -85,8 +86,10 @@ export default {
 		"You've somehow used a {{type}} that doesn't exist. I've removed the command so this won't happen in the future, this has already been reported to my developers.",
 
 	MISSING_PERMISSIONS_BASE_TITLE: "Missing Permissions",
-	MISSING_PERMISSIONS_OWNER_ONLY_DESCRIPTION: "This {{type}} can only be used by the owner of this server!",
-	MISSING_PERMISSIONS_DEVELOPER_ONLY_DESCRIPTION: "This {{type}} can only be used by my developers!",
+	MISSING_PERMISSIONS_OWNER_ONLY_DESCRIPTION:
+		"This {{type}} can only be used by the owner of this server!",
+	MISSING_PERMISSIONS_DEVELOPER_ONLY_DESCRIPTION:
+		"This {{type}} can only be used by my developers!",
 	MISSING_PERMISSIONS_USER_PERMISSIONS_ONE_DESCRIPTION:
 		"You are missing the {{missingPermissions}} permission, which is required to use this {{type}}!",
 	MISSING_PERMISSIONS_USER_PERMISSIONS_OTHER_DESCRIPTION:
@@ -97,16 +100,19 @@ export default {
 		"I are missing the {{missingPermissions}} permissions, which I need to run this {{type}}!",
 
 	TYPE_ON_COOLDOWN_TITLE: "{{type}} On Cooldown",
-	TYPE_ON_COOLDOWN_DESCRIPTION: "This {{type}} is on cooldown for another {{formattedTime}}!",
+	TYPE_ON_COOLDOWN_DESCRIPTION:
+		"This {{type}} is on cooldown for another {{formattedTime}}!",
 	COOLDOWN_ON_TYPE_TITLE: "Cooldown On All {{type}}",
-	COOLDOWN_ON_TYPE_DESCRIPTION: "Please wait a second before running another {{type}}!",
+	COOLDOWN_ON_TYPE_DESCRIPTION:
+		"Please wait a second before running another {{type}}!",
 
 	AN_ERROR_HAS_OCCURRED_TITLE: "An Error Has Occurred",
 	AN_ERROR_HAS_OCCURRED_DESCRIPTION:
 		"An error has occurred, please try again later. This has already been reported to my developers.",
 
 	PING_COMMAND_NAME: "ping",
-	PING_COMMAND_DESCRIPTION: "Pong! Get the current ping / latency of toothless.",
+	PING_COMMAND_DESCRIPTION:
+		"Pong! Get the current ping / latency of toothless.",
 
 	PING: "Ping?",
 	PONG: "Pong! (Host latency of {{hostLatency}}ms)",
@@ -115,31 +121,82 @@ export default {
 	CONFIG_COMMAND_DESCRIPTION: "Manage toothless's config for your server.",
 
 	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_NAME: "log_channels",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_DESCRIPTION: "Manage the log channels for your server.",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_DESCRIPTION:
+		"Manage the log channels for your server.",
 	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME: "add",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_DESCRIPTION: "Add a log channel.",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME: "channel",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_DESCRIPTION:
+		"Add a log channel.",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME:
+		"channel",
 	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION:
 		"The channel to add as a log channel.",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_NAME: "event",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_DESCRIPTION: "The event to log to the channel.",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_NAME:
+		"event",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_DESCRIPTION:
+		"The event to log to the channel.",
 	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_NAME: "remove",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_DESCRIPTION: "Remove a log channel.",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_NAME: "channel",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_DESCRIPTION:
+		"Remove a log channel.",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_NAME:
+		"channel",
 	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION:
 		"The channel to remove as a log channel.",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EVENT_OPTION_NAME: "event",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EVENT_OPTION_NAME:
+		"event",
 	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EVENT_OPTION_DESCRIPTION:
 		"The event to remove from the channel.",
 	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_NAME: "list",
-	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_DESCRIPTION: "List all log channels.",
+	CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_DESCRIPTION:
+		"List all log channels.",
 
 	INVALID_LOG_EVENT_NAME_TITLE: "Invalid Log Event Name",
-	INVALID_LOG_EVENT_NAME_DESCRIPTION: "The event name you provided is not a valid event name!",
+	INVALID_LOG_EVENT_NAME_DESCRIPTION:
+		"The event name you provided is not a valid event name!",
 
 	LOG_CHANNEL_ADDED_TITLE: "Log Channel Added",
-	LOG_CHANNEL_ADDED_DESCRIPTION: "{{event}} will now be logged into {{channel}}!",
+	LOG_CHANNEL_ADDED_DESCRIPTION:
+		"{{event}} will now be logged into {{channel}}!",
 
 	LOG_CHANNEL_REMOVED_TITLE: "Log Channel Removed",
-	LOG_CHANNEL_REMOVED_DESCRIPTION: "{{event}} will no longer be logged into {{channel}}!",
+	LOG_CHANNEL_REMOVED_DESCRIPTION:
+		"{{event}} will no longer be logged into {{channel}}!",
+
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_NAME: "auto_reaction",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_DESCRIPTION:
+		"Manage the auto reactions for your server.",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME: "add",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_DESCRIPTION:
+		"Add an auto reaction to a channel.",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME:
+		"channel",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION:
+		"The channel to add an auto reaction to.",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_NAME:
+		"emoji",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_DESCRIPTION:
+		"The emoji to react with.",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_NAME: "remove",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_DESCRIPTION:
+		"Remove an auto reaction from a channel.",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_NAME:
+		"channel",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION:
+		"The channel to remove an auto reaction from.",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EMOJI_OPTION_NAME:
+		"emoji",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EMOJI_OPTION_DESCRIPTION:
+		"The emoji to remove.",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_NAME: "list",
+	CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_DESCRIPTION:
+		"List all auto reactions.",
+
+	AUTO_REACTION_ADDED_TITLE: "Auto Reaction Added",
+	AUTO_REACTION_ADDED_DESCRIPTION:
+		"{{emoji}} will now be added to {{channel}}!",
+
+	AUTO_REACTION_REMOVED_TITLE: "Auto Reaction Removed",
+	AUTO_REACTION_REMOVED_DESCRIPTION:
+		"{{emoji}} will no longer be added to {{channel}}!",
+
+	AUTO_REACTION_LIST_TITLE: "Auto Reactions"
 };

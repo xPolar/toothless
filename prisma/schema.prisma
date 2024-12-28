@@ -82,3 +82,12 @@ model Message {
 
     @@map("messages")
 }
+
+model AutoReaction {
+    channelId String
+    guildId String
+    reaction String
+
+    @@id([channelId, reaction])
+    @@map("auto_reactions")
+}
