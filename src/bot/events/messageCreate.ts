@@ -127,7 +127,7 @@ export default class MessageCreate extends EventHandler {
 				await this.client.api.channels.addMessageReaction(
 					message.channel_id,
 					message.id,
-					reaction
+					reaction.replace(">", "")
 				);
 		}
 

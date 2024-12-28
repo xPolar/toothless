@@ -49,10 +49,17 @@ export default class Functions {
 	 * @param createDirectoryIfNotFound Whether or not the directory we want to search for should be created if it doesn't already exist.
 	 * @returns The files within the directory.
 	 */
-	public getFiles(directory: string, fileExtension: string, createDirectoryIfNotFound = false) {
-		if (createDirectoryIfNotFound && !existsSync(directory)) mkdirSync(directory);
+	public getFiles(
+		directory: string,
+		fileExtension: string,
+		createDirectoryIfNotFound = false
+	) {
+		if (createDirectoryIfNotFound && !existsSync(directory))
+			mkdirSync(directory);
 
-		return readdirSync(directory).filter((file) => file.endsWith(fileExtension));
+		return readdirSync(directory).filter((file) =>
+			file.endsWith(fileExtension)
+		);
 	}
 
 	private _format(
@@ -60,20 +67,26 @@ export default class Functions {
 		prefix: string,
 		type: "day" | "hour" | "minute" | "ms" | "second" | "year",
 		long: boolean,
-		language: Language,
+		language: Language
 	) {
-		const number = Math.trunc(value) === value ? value : Math.trunc(value + 0.5);
+		const number =
+			Math.trunc(value) === value ? value : Math.trunc(value + 0.5);
 
 		if (type === "ms") return `${prefix}${number}ms`;
 
 		return `${prefix}${number}${
 			long
 				? ` ${language.get(
-						(number === 1 ? `${type}_ONE` : `${type}_OTHER`).toUpperCase() as Uppercase<
+						(number === 1
+							? `${type}_ONE`
+							: `${type}_OTHER`
+						).toUpperCase() as Uppercase<
 							`${typeof type}_ONE` | `${typeof type}_OTHER`
-						>,
-					)}`
-				: language.get(`${type}_SHORT`.toUpperCase() as Uppercase<`${typeof type}_SHORT`>)
+						>
+				  )}`
+				: language.get(
+						`${type}_SHORT`.toUpperCase() as Uppercase<`${typeof type}_SHORT`>
+				  )
 		}`;
 	}
 
@@ -86,16 +99,21 @@ export default class Functions {
 	 * @returns The formatting count.
 	 */
 	public format(milli: number, long = true, language?: Language) {
-		const lang: Language = language || this.client.languageHandler.defaultLanguage!;
+		const lang: Language =
+			language || this.client.languageHandler.defaultLanguage!;
 
 		const prefix = milli < 0 ? "-" : "";
 		const abs = milli < 0 ? -milli : milli;
 
 		if (abs < this.SEC) return `${milli}${long ? " ms" : "ms"}`;
-		if (abs < this.MIN) return this._format(abs / this.SEC, prefix, "second", long, lang);
-		if (abs < this.HOUR) return this._format(abs / this.MIN, prefix, "minute", long, lang);
-		if (abs < this.DAY) return this._format(abs / this.HOUR, prefix, "hour", long, lang);
-		if (abs < this.YEAR) return this._format(abs / this.DAY, prefix, "day", long, lang);
+		if (abs < this.MIN)
+			return this._format(abs / this.SEC, prefix, "second", long, lang);
+		if (abs < this.HOUR)
+			return this._format(abs / this.MIN, prefix, "minute", long, lang);
+		if (abs < this.DAY)
+			return this._format(abs / this.HOUR, prefix, "hour", long, lang);
+		if (abs < this.YEAR)
+			return this._format(abs / this.DAY, prefix, "day", long, lang);
 
 		return this._format(abs / this.YEAR, prefix, "year", long, lang);
 	}
@@ -146,27 +164,35 @@ export default class Functions {
 	 * @param options.type The type of the content, defaults to "md".
 	 * @returns The URL to the uploaded content.
 	 */
-	public async uploadToHastebin(content: string, options?: { server?: string; type?: string }) {
+	public async uploadToHastebin(
+		content: string,
+		options?: { server?: string; type?: string }
+	) {
 		try {
-			const response = await fetch(`${options?.server ?? this.client.config.hastebin}/documents`, {
-				method: "POST",
-				body: content,
-				headers: {
-					"User-Agent": `${this.client.config.botName
-						.toLowerCase()
-						.split(" ")
-						.join("_")}/${this.client.config.version}`,
-				},
-			});
+			const response = await fetch(
+				`${options?.server ?? this.client.config.hastebin}/documents`,
+				{
+					method: "POST",
+					body: content,
+					headers: {
+						"User-Agent": `${this.client.config.botName
+							.toLowerCase()
+							.split(" ")
+							.join("_")}/${this.client.config.version}`
+					}
+				}
+			);
 
 			const responseJSON = await response.json();
 
-			return `${options?.server ?? this.client.config.hastebin}/${responseJSON.key}.${options?.type ?? "md"}`;
+			return `${options?.server ?? this.client.config.hastebin}/${
+				responseJSON.key
+			}.${options?.type ?? "md"}`;
 		} catch (error) {
 			this.client.logger.error(error);
 			await this.client.logger.sentry.captureWithExtras(error, {
 				Hastebin: options?.server ?? this.client.config.hastebin,
-				Content: content,
+				Content: content
 			});
 
 			return null;
@@ -182,24 +208,35 @@ export default class Functions {
 	 * @param options.type The type of the content, defaults to "md".
 	 * @returns The URL to the uploaded content.
 	 */
-	public static async uploadToHastebin(content: string, options?: { server?: string; type?: string }) {
+	public static async uploadToHastebin(
+		content: string,
+		options?: { server?: string; type?: string }
+	) {
 		try {
-			const response = await fetch(`${options?.server ?? Config.hastebin}/documents`, {
-				method: "POST",
-				body: content,
-				headers: {
-					"User-Agent": `${Config.botName.toLowerCase().split(" ").join("_")}/${Config.version}`,
-				},
-			});
+			const response = await fetch(
+				`${options?.server ?? Config.hastebin}/documents`,
+				{
+					method: "POST",
+					body: content,
+					headers: {
+						"User-Agent": `${Config.botName
+							.toLowerCase()
+							.split(" ")
+							.join("_")}/${Config.version}`
+					}
+				}
+			);
 
 			const responseJSON = await response.json();
 
-			return `${options?.server ?? Config.hastebin}/${responseJSON.key}.${options?.type ?? "md"}`;
+			return `${options?.server ?? Config.hastebin}/${responseJSON.key}.${
+				options?.type ?? "md"
+			}`;
 		} catch (error) {
 			Logger.error(error);
 			await Logger.sentry.captureWithExtras(error, {
 				Hastebin: options?.server ?? Config.hastebin,
-				Content: content,
+				Content: content
 			});
 
 			return null;
@@ -226,7 +263,9 @@ export default class Functions {
 		if (!input) return false;
 		return (
 			input instanceof Promise ||
-			(input !== Promise.prototype && this.isFunction(input.then) && this.isFunction(input.catch))
+			(input !== Promise.prototype &&
+				this.isFunction(input.then) &&
+				this.isFunction(input.catch))
 		);
 	}
 
