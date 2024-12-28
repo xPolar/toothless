@@ -1,0 +1,84 @@
+datasource db {
+    // Change provider to whichever provide you're using.
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+enum CommandType {
+    TEXT_COMMAND
+    APPLICATION_COMMAND
+}
+
+enum LogEvent {
+    MESSAGE_EDITED
+    MESSAGE_DELETED
+    CHANNEL_CREATED
+    CHANNEL_DELETED
+    CHANNEL_UPDATED
+    ROLE_CREATED
+    ROLE_DELETED
+    ROLE_UPDATED
+    MEMBER_ROLE_UPDATED
+    MEMBER_UPDATED
+    MEMBER_JOINED
+    MEMBER_LEFT
+    VOICE_STATE_UPDATE
+    THREAD_CREATED
+    THREAD_UPDATED
+    THREAD_DELETED
+    INVITE_CREATED
+    INVITE_DELETED
+    INCIDENT_CREATED
+}
+
+model Cooldown {
+    userId      String
+    commandName String
+
+    expiresAt DateTime
+
+    commandType CommandType
+
+    @@id([commandName, commandType, userId])
+    @@map("command_cooldowns")
+}
+
+model UserLanguage {
+    userId     String @id
+    languageId String
+
+    @@map("user_languages")
+}
+
+model LogChannel {
+    guildId   String
+    channelId String
+    event     LogEvent
+
+    @@id([channelId, event])
+    @@map("log_channels")
+}
+
+model MemberJoin {
+    id         String   @id @default(cuid())
+    inviteCode String?
+    userId     String
+    guildId    String
+    joinedAt   DateTime
+
+    @@map("member_joins")
+}
+
+model Message {
+    id        String   @id
+    content   String
+    guildId   String
+    authorId  String
+    createdAt DateTime
+
+    @@map("messages")
+}
