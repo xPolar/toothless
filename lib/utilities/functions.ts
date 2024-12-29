@@ -351,6 +351,7 @@ export default class Functions {
 
 								return toReturn;
 							}),
+							min_values: 0,
 							max_values: 25,
 							placeholder:
 								"Select option(s) from the dropdown menu..."
