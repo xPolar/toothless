@@ -207,7 +207,7 @@ export default class SelectRole extends ApplicationCommand {
 			]!.value;
 
 		if (
-			interaction.arguments.subCommandGroup?.name ===
+			interaction.arguments.subCommand?.name ===
 			this.client.languageHandler.defaultLanguage!.get(
 				"SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_NAME"
 			)
