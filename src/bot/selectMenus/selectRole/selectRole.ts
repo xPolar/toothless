@@ -68,7 +68,7 @@ export default class SelectRole extends SelectMenu {
 		return Promise.all([
 			this.client.api.guilds.editMember(
 				interaction.guild_id!,
-				interaction.user!.id,
+				interaction.member!.user.id,
 				{
 					roles: newRoles
 				}
