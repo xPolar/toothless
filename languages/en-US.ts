@@ -201,7 +201,7 @@ export default {
 	AUTO_REACTION_LIST_TITLE: "Auto Reactions",
 
 	EMBED_COMMAND_NAME: "embed",
-	EMBED_COMMAND_DESCRIPTION: "Manage Poddy's embeds for your server.",
+	EMBED_COMMAND_DESCRIPTION: "Manage toothless's embeds for your server.",
 
 	EMBED_COMMAND_CREATE_SUB_COMMAND_NAME: "create",
 	EMBED_COMMAND_CREATE_SUB_COMMAND_DESCRIPTION: "Create an embed.",
@@ -272,5 +272,72 @@ export default {
 
 	EMBED_RENAMED_TITLE: "Embed Renamed",
 	EMBED_RENAMED_DESCRIPTION:
-		"Embed **{{oldEmbedName}}** `[{{embedId}}]` has been renamed to **{{newEmbedName}}**!"
+		"Embed **{{oldEmbedName}}** `[{{embedId}}]` has been renamed to **{{newEmbedName}}**!",
+
+	SELECT_ROLE_COMMAND_NAME: "select_role",
+	SELECT_ROLE_COMMAND_DESCRIPTION:
+		"Manage select menu roles for your server.",
+
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_NAME: "add",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_DESCRIPTION:
+		"Add a select menu option to a message.",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_CHANNEL_OPTION_NAME: "channel",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION:
+		"The channel to add a select menu option to.",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_MESSAGE_OPTION_NAME: "message",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_MESSAGE_OPTION_DESCRIPTION:
+		"The message to add a select menu option to.",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_ROLE_OPTION_NAME: "role",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_ROLE_OPTION_DESCRIPTION:
+		"The role(s) to give to the user when they select this option.",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_LABEL_OPTION_NAME: "label",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_LABEL_OPTION_DESCRIPTION:
+		"The label of the select menu option.",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_EMOJI_OPTION_NAME: "emoji",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_EMOJI_OPTION_DESCRIPTION:
+		"The emoji of the select menu option.",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_DESCRIPTION_OPTION_NAME:
+		"description",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_DESCRIPTION_OPTION_DESCRIPTION:
+		"The description of the select menu option.",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_POSITION_OPTION_NAME: "position",
+	SELECT_ROLE_COMMAND_CREATE_SUB_COMMAND_POSITION_OPTION_DESCRIPTION:
+		"The position of this select role in the menu (0-based). If not specified, will be added at the end.",
+
+	INVALID_POSITION_TITLE: "Invalid Position",
+	INVALID_POSITION_DESCRIPTION:
+		"The position must be between {{min}} and {{max}}.",
+
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_NAME: "remove",
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_DESCRIPTION:
+		"Remove a select menu option from a message.",
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_CHANNEL_OPTION_NAME: "channel",
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION:
+		"The channel to remove a select menu option from.",
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_MESSAGE_OPTION_NAME: "message",
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_MESSAGE_OPTION_DESCRIPTION:
+		"The message to remove a select menu option from.",
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_LABEL_OPTION_NAME: "label",
+	SELECT_ROLE_COMMAND_DELETE_SUB_COMMAND_LABEL_OPTION_DESCRIPTION:
+		"The label of the select menu option.",
+
+	SELECT_ROLE_COMMAND_LIST_SUB_COMMAND_NAME: "list",
+	SELECT_ROLE_COMMAND_LIST_SUB_COMMAND_DESCRIPTION:
+		"List all select menu roles for the server.",
+
+	SELECT_ROLE_ADDED_TITLE: "Select Menu Role Added",
+	SELECT_ROLE_ADDED_DESCRIPTION:
+		"{{roles}} will now be given to users who select the option **{{label}}**!",
+
+	SELECT_ROLE_REMOVED_TITLE: "Select Menu Role Removed",
+	SELECT_ROLE_REMOVED_DESCRIPTION:
+		"{{roles}} will no longer be given to users who select the option **{{label}}**!",
+
+	SELECT_ROLE_NOT_FOUND_TITLE: "Select Menu Role Not Found",
+	SELECT_ROLE_NOT_FOUND_DESCRIPTION:
+		"A select menu role with the label **{{label}}** was not found!",
+
+	SELECT_ROLE_LIST_TITLE: "Select Menu Roles",
+
+	ROLES_EDITED_TITLE: "Roles Edited"
 };

@@ -85,8 +85,8 @@ model Message {
 
 model AutoReaction {
     channelId String
-    guildId String
-    reaction String
+    guildId   String
+    reaction  String
 
     @@id([channelId, reaction])
     @@map("auto_reactions")
@@ -100,4 +100,19 @@ model Embed {
 
     @@unique([name, guildId])
     @@map("embeds")
+}
+
+model SelectRole {
+    id          String   @id() @default(cuid())
+    messageId   String
+    guildId     String
+    channelId   String
+    roleIds     String[]
+    emoji       String?
+    label       String
+    description String?
+    position    Int
+
+    @@unique([messageId, label])
+    @@map("select_roles")
 }

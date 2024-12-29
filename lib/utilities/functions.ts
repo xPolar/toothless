@@ -5,6 +5,7 @@ import Config from "../../config/bot.config.js";
 import type Language from "../classes/Language.js";
 import Logger from "../classes/Logger.js";
 import type ExtendedClient from "../extensions/ExtendedClient.js";
+import { type APISelectMenuOption, ComponentType } from "@discordjs/core";
 
 export default class Functions {
 	/**
@@ -36,6 +37,17 @@ export default class Functions {
 	 * One year in milliseconds.
 	 */
 	private YEAR = this.DAY * 365.25;
+
+	/**
+	 * The regex to test if a string is a valid custom emoji.
+	 */
+	private readonly customEmojiRegex =
+		/<(?<animated>a)?:(?<emojiName>\w+):(?<emojiId>\d+)>/m;
+
+	/**
+	 * The regex to test if a string is a valid unicode emoji.
+	 */
+	private readonly unicodeEmojiRegex = /\p{Extended_Pictographic}/u;
 
 	public constructor(client: ExtendedClient) {
 		this.client = client;
@@ -277,5 +289,73 @@ export default class Functions {
 	 */
 	public hash(string: string): string {
 		return createHash("sha256").update(string).digest("hex");
+	}
+
+	/**
+	 * Update the select menu roles.
+	 *
+	 * @param channelId The ID of the channel where the select menu is located.
+	 * @param messageId The ID of the message where the select menu is located.
+	 */
+	public async updateSelectMenuRoles(channelId: string, messageId: string) {
+		const selectOptions = await this.client.prisma.selectRole.findMany({
+			where: {
+				messageId: messageId
+			},
+			orderBy: {
+				position: "asc"
+			}
+		});
+
+		if (!selectOptions.length) return;
+
+		return this.client.api.channels.editMessage(channelId, messageId, {
+			components: [
+				{
+					components: [
+						{
+							type: ComponentType.StringSelect,
+							custom_id: "selectRole",
+							options: selectOptions.map((option) => {
+								const toReturn: APISelectMenuOption = {
+									label: option.label,
+									value: option.id
+								};
+
+								if (option.description)
+									toReturn.description = option.description;
+								if (option.emoji) {
+									const { animated, emojiName, emojiId } =
+										this.customEmojiRegex.exec(
+											option.emoji ?? ""
+										)?.groups ?? {
+											animated: undefined,
+											emojiName:
+												this.unicodeEmojiRegex.exec(
+													option.emoji ?? ""
+												)?.[0],
+											emojiId: undefined
+										};
+
+									if (emojiId && emojiName)
+										toReturn.emoji = {
+											id: emojiId,
+											animated: Boolean(animated),
+											name: emojiName
+										};
+									else if (emojiName)
+										toReturn.emoji = {
+											name: emojiName
+										};
+								}
+
+								return toReturn;
+							})
+						}
+					],
+					type: ComponentType.ActionRow
+				}
+			]
+		});
 	}
 }
