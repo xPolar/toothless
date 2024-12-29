@@ -92,7 +92,8 @@ export default class SelectRole extends SelectMenu {
 											.map((roleId) => `<@&${roleId}>`)
 											.join(", ")}`
 									: ""
-							}`
+							}`,
+							color: this.client.config.colors.success
 						}
 					],
 					allowed_mentions: { parse: [], replied_user: true },

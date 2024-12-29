@@ -350,7 +350,10 @@ export default class Functions {
 								}
 
 								return toReturn;
-							})
+							}),
+							max_values: 25,
+							placeholder:
+								"Select option(s) from the dropdown menu..."
 						}
 					],
 					type: ComponentType.ActionRow
