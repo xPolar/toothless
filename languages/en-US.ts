@@ -198,5 +198,79 @@ export default {
 	AUTO_REACTION_REMOVED_DESCRIPTION:
 		"{{emoji}} will no longer be added to {{channel}}!",
 
-	AUTO_REACTION_LIST_TITLE: "Auto Reactions"
+	AUTO_REACTION_LIST_TITLE: "Auto Reactions",
+
+	EMBED_COMMAND_NAME: "embed",
+	EMBED_COMMAND_DESCRIPTION: "Manage Poddy's embeds for your server.",
+
+	EMBED_COMMAND_CREATE_SUB_COMMAND_NAME: "create",
+	EMBED_COMMAND_CREATE_SUB_COMMAND_DESCRIPTION: "Create an embed.",
+	EMBED_COMMAND_CREATE_SUB_COMMAND_NAME_OPTION_NAME: "name",
+	EMBED_COMMAND_CREATE_SUB_COMMAND_NAME_OPTION_DESCRIPTION:
+		"The name of the embed you want to create.",
+	EMBED_COMMAND_CREATE_SUB_COMMAND_DATA_OPTION_NAME: "data",
+	EMBED_COMMAND_CREATE_SUB_COMMAND_DATA_OPTION_DESCRIPTION:
+		"The data of the embed, usually exported from discohook.org -> JSON Data Editor.",
+
+	EMBED_COMMAND_DELETE_SUB_COMMAND_NAME: "delete",
+	EMBED_COMMAND_DELETE_SUB_COMMAND_DESCRIPTION: "Delete an embed.",
+	EMBED_COMMAND_DELETE_SUB_COMMAND_NAME_OPTION_NAME: "embed",
+	EMBED_COMMAND_DELETE_SUB_COMMAND_NAME_OPTION_DESCRIPTION:
+		"The name of the embed you want to delete.",
+
+	EMBED_COMMAND_RENAME_SUB_COMMAND_NAME: "rename",
+	EMBED_COMMAND_RENAME_SUB_COMMAND_DESCRIPTION: "Rename an embed.",
+	EMBED_COMMAND_RENAME_SUB_COMMAND_NAME_OPTION_NAME: "name",
+	EMBED_COMMAND_RENAME_SUB_COMMAND_NAME_OPTION_DESCRIPTION:
+		"The name of the embed you want to rename.",
+	EMBED_COMMAND_RENAME_SUB_COMMAND_NEW_NAME_OPTION_NAME: "new_name",
+	EMBED_COMMAND_RENAME_SUB_COMMAND_NEW_NAME_OPTION_DESCRIPTION:
+		"The new name of the embed.",
+
+	EMBED_COMMAND_LIST_SUB_COMMAND_NAME: "list",
+	EMBED_COMMAND_LIST_SUB_COMMAND_DESCRIPTION: "List all embeds.",
+
+	EMBED_COMMAND_PREVIEW_SUB_COMMAND_NAME: "preview",
+	EMBED_COMMAND_PREVIEW_SUB_COMMAND_DESCRIPTION: "Preview an embed.",
+	EMBED_COMMAND_PREVIEW_SUB_COMMAND_NAME_OPTION_NAME: "embed",
+	EMBED_COMMAND_PREVIEW_SUB_COMMAND_NAME_OPTION_DESCRIPTION:
+		"The name of the embed you want to preview.",
+	EMBED_COMMAND_PREVIEW_SUB_COMMAND_CHANNEL_OPTION_NAME: "channel",
+	EMBED_COMMAND_PREVIEW_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION:
+		"The channel to send the preview in.",
+
+	INVALID_JSON_TITLE: "Invalid JSON",
+	INVALID_JSON_DESCRIPTION: "The JSON you provided is invalid.",
+
+	EMBED_CREATED_TITLE: "Embed Created",
+	EMBED_CREATED_DESCRIPTION:
+		"Embed **{{embedName}}** `[{{embedId}}]` has been created!",
+
+	PREVIEW_EMBED_BUTTON_LABEL: "Preview Embed",
+
+	EMBED_NOT_FOUND_TITLE: "Embed Not Found",
+	EMBED_NOT_FOUND_DESCRIPTION:
+		"An embed with an ID `{{embedId}}` was not found!",
+
+	EMBED_DELETED_TITLE: "Embed Deleted",
+	EMBED_DELETED_DESCRIPTION:
+		"Embed **{{embedName}}** `[{{embedId}}]` has been deleted!",
+
+	EMBEDS_LIST_TITLE: "Embeds",
+	EMBEDS_LIST_NO_EMBEDS_DESCRIPTION:
+		"There are currently no embeds for this server, add some by doing `/embed create`!",
+
+	MISSING_PERMISSIONS_PREVIEW_MESSAGE_TITLE: "Missing Permissions",
+	MISSING_PERMISSIONS_PREVIEW_MESSAGE_DESCRIPTION:
+		"I'm unable to send a preview of the `{{name}}` embed into {{channel}}!",
+
+	EMBED_PREVIEW_SENT_TITLE: "Embed Preview Sent",
+	EMBED_PREVIEW_SENT_DESCRIPTION:
+		"The embed preview has been sent to {{channel}}!",
+
+	JUMP_TO_MESSAGE_BUTTON_LABEL: "Jump To Message",
+
+	EMBED_RENAMED_TITLE: "Embed Renamed",
+	EMBED_RENAMED_DESCRIPTION:
+		"Embed **{{oldEmbedName}}** `[{{embedId}}]` has been renamed to **{{newEmbedName}}**!"
 };

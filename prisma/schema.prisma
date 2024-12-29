@@ -91,3 +91,13 @@ model AutoReaction {
     @@id([channelId, reaction])
     @@map("auto_reactions")
 }
+
+model Embed {
+    id      String @id @default(cuid())
+    name    String
+    data    String
+    guildId String
+
+    @@unique([name, guildId])
+    @@map("embeds")
+}
