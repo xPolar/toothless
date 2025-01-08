@@ -78,7 +78,7 @@ export default class MessageUpdate extends EventHandler {
 				name: "Message Edited",
 				icon_url: "https://cdn.karalite.com/user_2Z1iHO0Px2py0XMFB2sy1mb631L/auditThreadUpdate.png",
 			},
-			description: `**User:** <@${message.member!.user!.id}> ${message.member!.nick ?? message.member!.user!.global_name} \`[${message.member!.user!.username}]\`\n**Channel:** <#${
+			description: `**User:** <@${message.author!.id}> ${message.member!.nick ?? message.author!.global_name} \`[${message.author!.username}]\`\n**Channel:** <#${
 				message.channel_id
 			}> \`(#${channelName})\` \`[${message.channel_id}]\`\n${
 				oldMessage ? `\n**Before:**\n${oldMessage.content}\n` : ""

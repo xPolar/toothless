@@ -65,6 +65,8 @@ export default class MessageDelete extends EventHandler {
 
 		const channelName = this.client.channelNameCache.get(message.channel_id);
 
+		const member = await this.client.api.guilds.getMember(message.guild_id!, authorId);
+
 		const embedToSend = {
 			author: {
 				name: "Message Deleted",
@@ -72,7 +74,7 @@ export default class MessageDelete extends EventHandler {
 			},
 			description: `**User:** ${
 				authorId
-					? `<@${message.member!.user!.id}> ${message.member!.nick ?? message.member!.user!.global_name} \`[${message.member!.user!.username}]\``
+					? `<@${authorId}> ${member!.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
 					: "Unknown User"
 			}\n**Channel:** <#${message.channel_id}> \`(#${channelName})\` \`[${message.channel_id}]\`\n${
 				oldMessage.createdAt
