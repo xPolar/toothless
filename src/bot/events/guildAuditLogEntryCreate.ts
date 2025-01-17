@@ -59,7 +59,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n**Channel Name:** ${channel.name}\n**Channel Type:** ${this.channelTypesMap[channel.type]}`,
 								color: this.client.config.colors.success,
@@ -156,7 +160,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								color: this.client.config.colors.error,
@@ -253,7 +261,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								color: this.client.config.colors.warning,
@@ -323,7 +335,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								footer: {
@@ -396,7 +412,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								footer: {
@@ -471,7 +491,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								footer: {
@@ -520,6 +544,7 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 			if (!changes.length) return;
 
 			const member = await this.client.api.guilds.getMember(auditLogEntry.guild_id!, auditLogEntry.user_id!);
+			const target = await this.client.api.guilds.getMember(auditLogEntry.guild_id!, auditLogEntry.target_id!);
 
 			return Promise.all(
 				loggingChannels.map(async (loggingChannel) =>
@@ -532,7 +557,19 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
+										: "Unknown User"
+								}\n**Target:** ${
+									auditLogEntry.target_id
+										? `<@${auditLogEntry.target_id}> ${
+												(target.nick ?? target.user!.global_name)
+													? `${target.nick ?? target.user!.global_name} \`[${target.user!.username}]\``
+													: target.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								footer: {
@@ -575,6 +612,7 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 			if (!changes.length) return;
 
 			const member = await this.client.api.guilds.getMember(auditLogEntry.guild_id!, auditLogEntry.user_id!);
+			const target = await this.client.api.guilds.getMember(auditLogEntry.guild_id!, auditLogEntry.target_id!);
 
 			return Promise.all(
 				loggingChannels.map(async (loggingChannel) =>
@@ -587,9 +625,19 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												member.nick ?? member.user!.global_name
+											} \`[${member.user!.username}]\``
 										: "Unknown User"
-								}\n\n${changes.join("\n")}`,
+								}\n**Target:** ${
+									auditLogEntry.target_id
+										? `<@${auditLogEntry.target_id}> ${
+												(target.nick ?? target.user!.global_name)
+													? `${target.nick ?? target.user!.global_name} \`[${target.user!.username}]\``
+													: target.user!.username
+											}`
+										: "Unknown User"
+								}}\n\n${changes.join("\n")}`,
 								footer: {
 									text: `Member ID: ${auditLogEntry.target_id}`,
 								},
@@ -669,7 +717,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								footer: {
@@ -771,7 +823,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								footer: {
@@ -870,7 +926,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								footer: {
@@ -961,7 +1021,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								color: this.client.config.colors.success,
@@ -1041,7 +1105,11 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 								},
 								description: `**User:** ${
 									auditLogEntry.user_id
-										? `<@${auditLogEntry.user_id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+										? `<@${auditLogEntry.user_id}> ${
+												(member.nick ?? member.user!.global_name)
+													? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+													: member.user!.username
+											}`
 										: "Unknown User"
 								}\n\n${changes.join("\n")}`,
 								color: this.client.config.colors.error,

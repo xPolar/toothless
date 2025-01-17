@@ -77,7 +77,7 @@ export default class GuildMemberAdd extends EventHandler {
 								name: "Member Joined",
 								icon_url: "https://cdn.karalite.com/user_2Z1iHO0Px2py0XMFB2sy1mb631L/auditMemberCreate.png",
 							},
-							description: `**User:** <@${member.user!.id}> ${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\`\n**Account Created:** ${this.client.functions.generateTimestamp(
+							description: `**User:** <@${member.user!.id}> ${(member.nick ?? member.user!.global_name) ? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\`` : member.user!.username}\n**Account Created:** ${this.client.functions.generateTimestamp(
 								{
 									timestamp: DiscordSnowflake.timestampFrom(member.user!.id),
 								},

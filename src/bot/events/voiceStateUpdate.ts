@@ -116,7 +116,7 @@ export default class GuildMemberAdd extends EventHandler {
 								name: "Voice State Update",
 								icon_url: "https://cdn.karalite.com/user_2Z1iHO0Px2py0XMFB2sy1mb631L/auditStageUpdate.png",
 							},
-							description: `**User:** <@${voiceState.user_id}> ${voiceState.member!.nick ?? voiceState.member!.user!.global_name} \`[${voiceState.member!.user!.username}]\`\n\n${changes.join("\n")}`,
+							description: `**User:** <@${voiceState.user_id}> ${(voiceState.member!.nick ?? voiceState.member!.user!.global_name) ? `${voiceState.member!.nick ?? voiceState.member!.user!.global_name} \`[${voiceState.member!.user!.username}]\`` : voiceState.member!.user!.username}\n\n${changes.join("\n")}`,
 							color: this.client.config.colors.warning,
 						},
 					],

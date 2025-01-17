@@ -74,7 +74,7 @@ export default class MessageDelete extends EventHandler {
 			},
 			description: `**User:** ${
 				authorId
-					? `<@${authorId}> ${member!.nick ?? member.user!.global_name} \`[${member.user!.username}]\``
+					? `<@${authorId}> ${(member.nick ?? member.user!.global_name) ? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\`` : member.user!.username}`
 					: "Unknown User"
 			}\n**Channel:** <#${message.channel_id}> \`(#${channelName})\` \`[${message.channel_id}]\`\n${
 				oldMessage.createdAt
