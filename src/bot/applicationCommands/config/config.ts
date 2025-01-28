@@ -4,7 +4,7 @@ import {
 	ApplicationCommandType,
 	ChannelType,
 	MessageFlags,
-	PermissionFlagsBits
+	PermissionFlagsBits,
 } from "@discordjs/core";
 import { LogEvent } from "@prisma/client";
 import ApplicationCommand from "../../../../lib/classes/ApplicationCommand.js";
@@ -16,9 +16,7 @@ export default class Ping extends ApplicationCommand {
 	/**
 	 * The event names that can be logged.
 	 */
-	private readonly eventNames = Object.keys(
-		LogEvent
-	) as (keyof typeof LogEvent)[];
+	private readonly eventNames = Object.keys(LogEvent) as (keyof typeof LogEvent)[];
 
 	/**
 	 * Create our ping command.
@@ -28,219 +26,181 @@ export default class Ping extends ApplicationCommand {
 	public constructor(client: ExtendedClient) {
 		super(client, {
 			options: {
-				...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-					{
-						name: "CONFIG_COMMAND_NAME",
-						description: "CONFIG_COMMAND_DESCRIPTION"
-					}
-				),
+				...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+					name: "CONFIG_COMMAND_NAME",
+					description: "CONFIG_COMMAND_DESCRIPTION",
+				}),
 				options: [
 					{
-						...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-							{
-								name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_NAME",
-								description:
-									"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_DESCRIPTION"
-							}
-						),
+						...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+							name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_NAME",
+							description: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_DESCRIPTION",
+						}),
 						options: [
 							{
-								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-									{
-										name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME",
-										description:
-											"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_DESCRIPTION"
-									}
-								),
+								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+									name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME",
+									description: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_DESCRIPTION",
+								}),
 								options: [
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME",
-												description:
-													"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME",
+											description: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.Channel,
 										channel_types: [
 											ChannelType.GuildText,
 											ChannelType.GuildAnnouncement,
 											ChannelType.PublicThread,
 											ChannelType.PrivateThread,
-											ChannelType.AnnouncementThread
+											ChannelType.AnnouncementThread,
 										],
-										required: true
+										required: true,
 									},
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_NAME",
-												description:
-													"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_NAME",
+											description: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.String,
 										required: true,
-										autocomplete: true
-									}
+										autocomplete: true,
+									},
 								],
-								type: ApplicationCommandOptionType.Subcommand
+								type: ApplicationCommandOptionType.Subcommand,
 							},
 							{
-								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-									{
-										name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_NAME",
-										description:
-											"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_DESCRIPTION"
-									}
-								),
+								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+									name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_NAME",
+									description: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_DESCRIPTION",
+								}),
 								options: [
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_NAME",
-												description:
-													"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_NAME",
+											description:
+												"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.Channel,
 										channel_types: [
 											ChannelType.GuildText,
 											ChannelType.GuildAnnouncement,
 											ChannelType.PublicThread,
 											ChannelType.PrivateThread,
-											ChannelType.AnnouncementThread
+											ChannelType.AnnouncementThread,
 										],
-										required: true
+										required: true,
 									},
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EVENT_OPTION_NAME",
-												description:
-													"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EVENT_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EVENT_OPTION_NAME",
+											description: "CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EVENT_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.String,
 										autocomplete: true,
-										required: true
-									}
+										required: true,
+									},
 								],
-								type: ApplicationCommandOptionType.Subcommand
-							}
+								type: ApplicationCommandOptionType.Subcommand,
+							},
 						],
-						type: ApplicationCommandOptionType.SubcommandGroup
+						type: ApplicationCommandOptionType.SubcommandGroup,
 					},
 					{
-						...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-							{
-								name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_NAME",
-								description:
-									"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_DESCRIPTION"
-							}
-						),
+						...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+							name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_NAME",
+							description: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_DESCRIPTION",
+						}),
 						options: [
 							{
-								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-									{
-										name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME",
-										description:
-											"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_DESCRIPTION"
-									}
-								),
+								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+									name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME",
+									description: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_DESCRIPTION",
+								}),
 								options: [
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME",
-												description:
-													"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME",
+											description: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.Channel,
 										channel_types: [
 											ChannelType.GuildText,
 											ChannelType.GuildAnnouncement,
 											ChannelType.PublicThread,
 											ChannelType.PrivateThread,
-											ChannelType.AnnouncementThread
+											ChannelType.AnnouncementThread,
 										],
-										required: true
+										required: true,
 									},
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_NAME",
-												description:
-													"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_NAME",
+											description: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.String,
-										required: true
-									}
+										required: true,
+									},
 								],
-								type: ApplicationCommandOptionType.Subcommand
+								type: ApplicationCommandOptionType.Subcommand,
 							},
 							{
-								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-									{
-										name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_NAME",
-										description:
-											"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_DESCRIPTION"
-									}
-								),
+								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+									name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_NAME",
+									description: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_DESCRIPTION",
+								}),
 								options: [
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_NAME",
-												description:
-													"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_NAME",
+											description:
+												"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_CHANNEL_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.Channel,
 										channel_types: [
 											ChannelType.GuildText,
 											ChannelType.GuildAnnouncement,
 											ChannelType.PublicThread,
 											ChannelType.PrivateThread,
-											ChannelType.AnnouncementThread
+											ChannelType.AnnouncementThread,
 										],
-										required: true
+										required: true,
 									},
 									{
-										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-											{
-												name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EMOJI_OPTION_NAME",
-												description:
-													"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EMOJI_OPTION_DESCRIPTION"
-											}
-										),
+										...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+											name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EMOJI_OPTION_NAME",
+											description: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_REMOVE_SUB_COMMAND_EMOJI_OPTION_DESCRIPTION",
+										}),
 										type: ApplicationCommandOptionType.String,
-										required: true
-									}
+										required: true,
+									},
 								],
-								type: ApplicationCommandOptionType.Subcommand
+								type: ApplicationCommandOptionType.Subcommand,
 							},
 							{
-								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType(
-									{
-										name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_NAME",
-										description:
-											"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_DESCRIPTION"
-									}
-								),
-								type: ApplicationCommandOptionType.Subcommand
-							}
+								...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+									name: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_NAME",
+									description: "CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_DESCRIPTION",
+								}),
+								type: ApplicationCommandOptionType.Subcommand,
+							},
 						],
-						type: ApplicationCommandOptionType.SubcommandGroup
-					}
+						type: ApplicationCommandOptionType.SubcommandGroup,
+					},
+					{
+						...client.languageHandler.generateLocalizationsForApplicationCommandOptionType({
+							name: "CONFIG_DONT_LOG_BOT_DELETES_SUB_COMMAND_NAME",
+							description: "CONFIG_DONT_LOG_BOT_DELETES_SUB_COMMAND_DESCRIPTION",
+						}),
+						options: [],
+						type: ApplicationCommandOptionType.Subcommand,
+					},
 				],
 				dm_permission: false,
-				default_member_permissions:
-					PermissionFlagsBits.ManageGuild.toString(),
-				type: ApplicationCommandType.ChatInput
-			}
+				default_member_permissions: PermissionFlagsBits.ManageGuild.toString(),
+				type: ApplicationCommandType.ChatInput,
+			},
 		});
 	}
 
@@ -254,104 +214,75 @@ export default class Ping extends ApplicationCommand {
 	 */
 	public override async run({
 		interaction,
-		language
+		language,
 	}: {
 		interaction: APIInteractionWithArguments<APIApplicationCommandInteraction>;
 		language: Language;
 		shardId: number;
 	}) {
 		if (
-			interaction.arguments.subCommandGroup!.name ===
-			this.client.languageHandler.defaultLanguage!.get(
-				"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_NAME"
-			)
+			interaction.arguments.subCommandGroup?.name ===
+			this.client.languageHandler.defaultLanguage!.get("CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_NAME")
 		) {
 			const channelId =
 				interaction.arguments.channels![
 					this.client.languageHandler.defaultLanguage!.get(
-						"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME"
+						"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME",
 					)
 				]!.id;
 			const event = interaction.arguments.strings![
 				this.client.languageHandler.defaultLanguage!.get(
-					"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_NAME"
+					"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EVENT_OPTION_NAME",
 				)
 			]!.value as keyof typeof LogEvent;
 
 			if (!this.eventNames.includes(event))
-				return this.client.api.interactions.reply(
-					interaction.id,
-					interaction.token,
-					{
-						embeds: [
-							{
-								title: language.get(
-									"INVALID_LOG_EVENT_NAME_TITLE"
-								),
-								description: language.get(
-									"INVALID_LOG_EVENT_NAME_DESCRIPTION"
-								),
-								color: this.client.config.colors.error
-							}
-						],
-						allowed_mentions: { parse: [], replied_user: true },
-						flags: MessageFlags.Ephemeral
-					}
-				);
+				return this.client.api.interactions.reply(interaction.id, interaction.token, {
+					embeds: [
+						{
+							title: language.get("INVALID_LOG_EVENT_NAME_TITLE"),
+							description: language.get("INVALID_LOG_EVENT_NAME_DESCRIPTION"),
+							color: this.client.config.colors.error,
+						},
+					],
+					allowed_mentions: { parse: [], replied_user: true },
+					flags: MessageFlags.Ephemeral,
+				});
 
 			if (
 				interaction.arguments.subCommand!.name ===
-				this.client.languageHandler.defaultLanguage!.get(
-					"CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME"
-				)
+				this.client.languageHandler.defaultLanguage!.get("CONFIG_LOG_CHANNELS_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME")
 			) {
 				return Promise.all([
 					this.client.prisma.logChannel.upsert({
 						where: {
 							channelId_event: {
 								channelId,
-								event
-							}
+								event,
+							},
 						},
 						create: {
 							channelId,
 							guildId: interaction.guild_id!,
-							event
+							event,
 						},
-						update: {}
+						update: {},
 					}),
-					this.client.api.interactions.reply(
-						interaction.id,
-						interaction.token,
-						{
-							embeds: [
-								{
-									title: language.get(
-										"LOG_CHANNEL_ADDED_TITLE"
-									),
-									description: language.get(
-										"LOG_CHANNEL_ADDED_DESCRIPTION",
-										{
-											event: event
-												.split("_")
-												.map(
-													(word) =>
-														word
-															.charAt(0)
-															.toUpperCase() +
-														word
-															.slice(1)
-															.toLowerCase()
-												)
-												.join(" "),
-											channel: `<#${channelId}>`
-										}
-									),
-									color: this.client.config.colors.success
-								}
-							]
-						}
-					)
+					this.client.api.interactions.reply(interaction.id, interaction.token, {
+						embeds: [
+							{
+								title: language.get("LOG_CHANNEL_ADDED_TITLE"),
+								description: language.get("LOG_CHANNEL_ADDED_DESCRIPTION", {
+									event: event
+										.split("_")
+										.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+										.join(" "),
+									channel: `<#${channelId}>`,
+								}),
+								color: this.client.config.colors.success,
+							},
+						],
+					}),
 				]);
 			}
 
@@ -359,140 +290,102 @@ export default class Ping extends ApplicationCommand {
 				this.client.prisma.logChannel.deleteMany({
 					where: {
 						channelId,
-						event
-					}
+						event,
+					},
 				}),
-				this.client.api.interactions.reply(
-					interaction.id,
-					interaction.token,
-					{
-						embeds: [
-							{
-								title: language.get(
-									"LOG_CHANNEL_REMOVED_TITLE"
-								),
-								description: language.get(
-									"LOG_CHANNEL_REMOVED_DESCRIPTION",
-									{
-										event: event
-											.split("_")
-											.map(
-												(word) =>
-													word
-														.charAt(0)
-														.toUpperCase() +
-													word.slice(1).toLowerCase()
-											)
-											.join(" "),
-										channel: `<#${channelId}>`
-									}
-								),
-								color: this.client.config.colors.success
-							}
-						]
-					}
-				)
+				this.client.api.interactions.reply(interaction.id, interaction.token, {
+					embeds: [
+						{
+							title: language.get("LOG_CHANNEL_REMOVED_TITLE"),
+							description: language.get("LOG_CHANNEL_REMOVED_DESCRIPTION", {
+								event: event
+									.split("_")
+									.map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+									.join(" "),
+								channel: `<#${channelId}>`,
+							}),
+							color: this.client.config.colors.success,
+						},
+					],
+				}),
 			]);
 		}
 
 		if (
-			interaction.arguments.subCommandGroup!.name ===
-			this.client.languageHandler.defaultLanguage!.get(
-				"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_NAME"
-			)
+			interaction.arguments.subCommandGroup?.name ===
+			this.client.languageHandler.defaultLanguage!.get("CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_NAME")
 		) {
 			if (
 				interaction.arguments.subCommand!.name ===
-				this.client.languageHandler.defaultLanguage!.get(
-					"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_NAME"
-				)
+				this.client.languageHandler.defaultLanguage!.get("CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_LIST_SUB_COMMAND_NAME")
 			) {
-				const autoReactions =
-					await this.client.prisma.autoReaction.findMany({
-						where: {
-							guildId: interaction.guild_id!
-						},
-						select: {
-							channelId: true,
-							reaction: true
-						}
-					});
+				const autoReactions = await this.client.prisma.autoReaction.findMany({
+					where: {
+						guildId: interaction.guild_id!,
+					},
+					select: {
+						channelId: true,
+						reaction: true,
+					},
+				});
 
-				return this.client.api.interactions.reply(
-					interaction.id,
-					interaction.token,
-					{
-						embeds: [
-							{
-								title: language.get("AUTO_REACTION_LIST_TITLE"),
-								description: autoReactions
-									.map(
-										(autoReaction) =>
-											`<#${autoReaction.channelId}> - ${autoReaction.reaction}`
-									)
-									.join("\n"),
-								color: this.client.config.colors.success
-							}
-						]
-					}
-				);
+				return this.client.api.interactions.reply(interaction.id, interaction.token, {
+					embeds: [
+						{
+							title: language.get("AUTO_REACTION_LIST_TITLE"),
+							description: autoReactions
+								.map((autoReaction) => `<#${autoReaction.channelId}> - ${autoReaction.reaction}`)
+								.join("\n"),
+							color: this.client.config.colors.success,
+						},
+					],
+				});
 			}
 
 			const channelId =
 				interaction.arguments.channels![
 					this.client.languageHandler.defaultLanguage!.get(
-						"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME"
+						"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_CHANNEL_OPTION_NAME",
 					)
 				]!.id;
 			const emoji =
 				interaction.arguments.strings![
 					this.client.languageHandler.defaultLanguage!.get(
-						"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_NAME"
+						"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_EMOJI_OPTION_NAME",
 					)
 				]!.value;
 
 			if (
 				interaction.arguments.subCommand!.name ===
-				this.client.languageHandler.defaultLanguage!.get(
-					"CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME"
-				)
+				this.client.languageHandler.defaultLanguage!.get("CONFIG_AUTO_REACTION_SUB_COMMAND_GROUP_ADD_SUB_COMMAND_NAME")
 			) {
 				return Promise.all([
 					this.client.prisma.autoReaction.upsert({
 						where: {
 							channelId_reaction: {
 								channelId,
-								reaction: emoji
-							}
+								reaction: emoji,
+							},
 						},
 						create: {
 							channelId,
 							guildId: interaction.guild_id!,
-							reaction: emoji
+							reaction: emoji,
 						},
-						update: {}
+						update: {},
 					}),
-					this.client.api.interactions.reply(
-						interaction.id,
-						interaction.token,
-						{
-							embeds: [
-								{
-									title: language.get(
-										"AUTO_REACTION_ADDED_TITLE"
-									),
-									description: language.get(
-										"AUTO_REACTION_ADDED_DESCRIPTION",
-										{
-											channel: `<#${channelId}>`,
-											emoji
-										}
-									),
-									color: this.client.config.colors.success
-								}
-							]
-						}
-					)
+					this.client.api.interactions.reply(interaction.id, interaction.token, {
+						embeds: [
+							{
+								title: language.get("AUTO_REACTION_ADDED_TITLE"),
+								description: language.get("AUTO_REACTION_ADDED_DESCRIPTION", {
+									channel: `<#${channelId}>`,
+									emoji,
+								}),
+								color: this.client.config.colors.success,
+							},
+						],
+					}),
 				]);
 			}
 
@@ -500,30 +393,67 @@ export default class Ping extends ApplicationCommand {
 				this.client.prisma.autoReaction.deleteMany({
 					where: {
 						channelId,
-						reaction: emoji
-					}
+						reaction: emoji,
+					},
 				}),
-				this.client.api.interactions.reply(
-					interaction.id,
-					interaction.token,
-					{
+				this.client.api.interactions.reply(interaction.id, interaction.token, {
+					embeds: [
+						{
+							title: language.get("AUTO_REACTION_REMOVED_TITLE"),
+							description: language.get("AUTO_REACTION_REMOVED_DESCRIPTION", {
+								channel: `<#${channelId}>`,
+								emoji,
+							}),
+							color: this.client.config.colors.success,
+						},
+					],
+				}),
+			]);
+		}
+
+		if (
+			interaction.arguments.subCommand?.name ===
+			this.client.languageHandler.defaultLanguage!.get("CONFIG_DONT_LOG_BOT_DELETES_SUB_COMMAND_NAME")
+		) {
+			const exists = await this.client.prisma.dontLogBotDeletes.findUnique({
+				where: {
+					guildId: interaction.guild_id!,
+				},
+			});
+
+			if (!exists)
+				return Promise.all([
+					this.client.prisma.dontLogBotDeletes.create({
+						data: {
+							guildId: interaction.guild_id!,
+						},
+					}),
+					this.client.api.interactions.reply(interaction.id, interaction.token, {
 						embeds: [
 							{
-								title: language.get(
-									"AUTO_REACTION_REMOVED_TITLE"
-								),
-								description: language.get(
-									"AUTO_REACTION_REMOVED_DESCRIPTION",
-									{
-										channel: `<#${channelId}>`,
-										emoji
-									}
-								),
-								color: this.client.config.colors.success
-							}
-						]
-					}
-				)
+								title: language.get("DONT_LOG_BOT_DELETES_ENABLED_TITLE"),
+								description: language.get("DONT_LOG_BOT_DELETES_ENABLED_DESCRIPTION"),
+								color: this.client.config.colors.success,
+							},
+						],
+					}),
+				]);
+
+			return Promise.all([
+				this.client.prisma.dontLogBotDeletes.delete({
+					where: {
+						guildId: interaction.guild_id!,
+					},
+				}),
+				this.client.api.interactions.reply(interaction.id, interaction.token, {
+					embeds: [
+						{
+							title: language.get("DONT_LOG_BOT_DELETES_DISABLED_TITLE"),
+							description: language.get("DONT_LOG_BOT_DELETES_DISABLED_DESCRIPTION"),
+							color: this.client.config.colors.success,
+						},
+					],
+				}),
 			]);
 		}
 	}

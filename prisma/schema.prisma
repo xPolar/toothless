@@ -116,3 +116,9 @@ model SelectRole {
     @@unique([messageId, label])
     @@map("select_roles")
 }
+
+model DontLogBotDeletes {
+    guildId String @id
+
+    @@map("dont_log_bot_deletes")
+}

@@ -1,15 +1,17 @@
 import { setTimeout } from "node:timers";
 import type {
 	APIEmbed,
+	APIGuildMember,
 	APIGuildTextChannel,
 	GatewayMessageUpdateDispatchData,
 	GuildTextChannelType,
 	WithIntrinsicProps,
 } from "@discordjs/core";
-import { GatewayDispatchEvents, MessageType, RESTJSONErrorCodes } from "@discordjs/core";
+import { AuditLogEvent, GatewayDispatchEvents, MessageType, RESTJSONErrorCodes } from "@discordjs/core";
 import { DiscordAPIError } from "@discordjs/rest";
 import EventHandler from "../../../lib/classes/EventHandler.js";
 import type ExtendedClient from "../../../lib/extensions/ExtendedClient.js";
+import { DiscordSnowflake } from "@sapphire/snowflake";
 
 export default class MessageDelete extends EventHandler {
 	public constructor(client: ExtendedClient) {
@@ -66,6 +68,42 @@ export default class MessageDelete extends EventHandler {
 		const channelName = this.client.channelNameCache.get(message.channel_id);
 
 		const member = await this.client.api.guilds.getMember(message.guild_id!, authorId);
+		let deletedBy: APIGuildMember | null = null;
+
+		const auditLogResponse = await this.client.api.guilds.getAuditLogs(message.guild_id!, {
+			action_type: AuditLogEvent.MessageDelete,
+		});
+
+		const possibleMatches = auditLogResponse.audit_log_entries.filter(
+			(auditLogEntry) =>
+				auditLogEntry.target_id === member.user!.id && auditLogEntry.options?.channel_id === message.channel_id,
+		);
+
+		const mostRecentMatch = possibleMatches.length
+			? possibleMatches.reduce((previous, current) =>
+					Math.abs(Date.now() - DiscordSnowflake.timestampFrom(current.id)) <
+					Math.abs(Date.now() - DiscordSnowflake.timestampFrom(previous.id))
+						? current
+						: previous,
+				)
+			: undefined;
+
+		if (mostRecentMatch) {
+			const timeDifference = Math.abs(Date.now() - DiscordSnowflake.timestampFrom(mostRecentMatch.id));
+			const count = Number.parseInt(mostRecentMatch.options?.count ?? "0");
+
+			if (timeDifference < 10_000 || (timeDifference > 10_000 && count > 1)) {
+				deletedBy = await this.client.api.guilds.getMember(message.guild_id!, mostRecentMatch.user_id!);
+
+				const dontLogBotDeletes = await this.client.prisma.dontLogBotDeletes.findUnique({
+					where: {
+						guildId: message.guild_id!,
+					},
+				});
+
+				if (dontLogBotDeletes && deletedBy.user!.bot) return;
+			}
+		}
 
 		const embedToSend = {
 			author: {
@@ -76,7 +114,7 @@ export default class MessageDelete extends EventHandler {
 				authorId
 					? `<@${authorId}> ${(member.nick ?? member.user!.global_name) ? `${member.nick ?? member.user!.global_name} \`[${member.user!.username}]\`` : member.user!.username}`
 					: "Unknown User"
-			}\n**Channel:** <#${message.channel_id}> \`(#${channelName})\` \`[${message.channel_id}]\`\n${
+			}${deletedBy ? `\n**Deleted By:** <@${deletedBy.user!.id}> ${(deletedBy.nick ?? deletedBy.user!.global_name) ? `${deletedBy.nick ?? deletedBy.user!.global_name} \`[${deletedBy.user!.username}]\`` : deletedBy.user!.username}` : ""}\n**Channel:** <#${message.channel_id}> \`(#${channelName})\` \`[${message.channel_id}]\`\n${
 				oldMessage.createdAt
 					? `**Message Created:** ${this.client.functions.generateTimestamp({
 							timestamp: oldMessage.createdAt,

@@ -1035,6 +1035,7 @@ export default class GuildAuditLogEntryCreate extends EventHandler {
 				),
 			);
 		}
+
 		if (auditLogEntry.action_type === AuditLogEvent.InviteDelete) {
 			const loggingChannels = await this.client.prisma.logChannel.findMany({
 				where: {
